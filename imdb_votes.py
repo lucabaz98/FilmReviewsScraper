@@ -1,5 +1,6 @@
 import requests
 import re
+import sys
 
 class IMDb:
     def __init__(self, api_key, title, year):
@@ -37,13 +38,19 @@ class IMDb:
             if data.get('Response') != 'False':
                 self._parse_response(data, film)   
             else:
-                print(f"IMDB: Error: {data.get('Error')}")
+                print(f"IMDB: {self.title} {data.get('Error')}")
         else:
-            print(f"IMDB: Error: {response.status_code}")
+            if response.status_code == 401:
+                print("API Key is invalid")
+                print("Exiting...")
+                print("Please provide a valid API Key")
+                sys.exit(1)
+            else:
+                print(f"IMDB: Error: {response.status_code}")
         return film
 
 # if __name__ == "__main__":
-#     tit = "La vita negli oceani"
+#     tit = "The Transporter"
 #     #tit = "Borat - Studio culturale sull'America a beneficio della gloriosa nazione del Kazakistan"
 #     film = {
 #         'title': tit,

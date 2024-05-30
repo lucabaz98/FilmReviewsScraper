@@ -3,6 +3,9 @@ import importlib
 import box_office_scraper
 import coming_soon_votes
 from imdb_votes import IMDb
+import argparse
+from tqdm import tqdm
+# import subprocess
 
 def db_connection():
     client = MongoClient("localhost", 27017)
@@ -21,17 +24,21 @@ def create_ordered_box_office(n):
     return interleaved_list
 
 
-def scrape(country, seasons, indices, collection):
+def scrape(country, seasons, collection):
     unique_titles = set()
     collection.create_index([('title', 1)], unique=True)
     for season in seasons:
         print(f"Scraping {season}...")
-        soup = box_office_scraper.get_soup(f"https://www.mymovies.it/boxoffice/{country}/{season}/")
+        url = f"https://www.mymovies.it/boxoffice/{country}/{season}/"
+    
+        soup = box_office_scraper.get_soup(url)
         rows = soup.find_all('tr', attrs={'valign': 'top'})
+        number_of_films = len(rows)
+        indices = create_ordered_box_office(number_of_films)
         
-        for i in indices:
+        for i in tqdm(indices, desc=f"Processing films for {season} in {country}"):
             film = box_office_scraper.film_informations(rows[i], country, season)
-            print(i, film['title'])
+            
             if film['title'] not in unique_titles:
                 unique_titles.add(film['title'])
     
@@ -48,14 +55,28 @@ def scrape(country, seasons, indices, collection):
                     print(f"Duplicate film found: {film['title']}. Skipping insertion.")
             else:   
                 print(f"Duplicate film found: {film['title']}. Skipping insertion. {season}")
-                
-
-
+        print(f"Scraping {season} completed.")        
 
 if __name__ == "__main__":
-    number_of_films = 100
-    rank_list = create_ordered_box_office(number_of_films) 
-    seasons = list(range(2004, 2010))
-    countries = ["usa"]
-    for country in countries:
-        box_office_scraper = scrape(country, seasons, rank_list, db_connection())
+    parser = argparse.ArgumentParser(description="Scrape box office data and save to MongoDB.")
+    parser.add_argument("--countries", type=str, nargs='+', required=True, default=["usa"], help="List of countries for box office data. usa or ita")
+    parser.add_argument("--seasons", type=int, nargs='+', required=True, default=[2023], help="List of seasons (years) to scrape data for. >200")
+
+    args = parser.parse_args()
+    
+    collection = db_connection()
+    
+    for country in args.countries:
+        print(f"Scraping box office data for {country}...")
+        scrape(country, args.seasons, collection)
+        print(f"Scraping box office data for {country} completed.")
+    
+    print("Scraping completed.")
+    
+    # seasons = list(range(2021, 2024))
+    # countries = ["usa"]
+    # for country in countries:
+    #     box_office_scraper = scrape(country, seasons, db_connection())
+        
+    # sleep_command = 'osascript -e "tell application \\"System Events\\" to sleep"'
+    # subprocess.run(sleep_command, shell=True)
