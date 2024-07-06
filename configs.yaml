@@ -1,0 +1,10 @@
+MONGODB_HOST: "localhost"
+MONGODB_PORT: 27017
+MONGODB_DB_NAME: "db_Films"
+MONGODB_COLLECTION_NAME: "Film"
+
+IMDB_API_KEY: "6b18b613"
+
+USER_AGENT: "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36"
+
+URL_MYMOVIES_BOXOFFICE: "https://www.mymovies.it/boxoffice"
