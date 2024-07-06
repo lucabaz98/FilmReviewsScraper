@@ -13,6 +13,7 @@ The project is organized into several Python scripts, each responsible for a spe
 - **imdb.py**: Contains functions to scrape votes and ratings data from [IMDb](https://www.imdb.com/).
 - **my_movies.py**: Contains functions to scrape data from [MyMovies](https://www.mymovies.it/).
 - **coming_soon.py**: Contains functions to scrape data from [ComingSoon](https://www.comingsoon.it/).
+- **utils.py**: Contains utility functions used across the project.
 
 ## Requirements
 
