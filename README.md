@@ -10,9 +10,9 @@ This project is designed to scrape movie data from various sources. The collecte
 The project is organized into several Python scripts, each responsible for a specific task:
 
 - **scraper.py**: The main script to be executed for scraping data.
-- **imdb.py**: Contains functions to scrape votes and ratings data from IMDb.
-- **my_movies.py**: Contains functions to scrape data from MyMovies website.
-- **coming_soon.py**: Contains functions to scrape data from ComingSoon website.
+- **imdb.py**: Contains functions to scrape votes and ratings data from [IMDb](https://www.imdb.com/).
+- **my_movies.py**: Contains functions to scrape data from [MyMovies](https://www.mymovies.it/).
+- **coming_soon.py**: Contains functions to scrape data from [ComingSoon](https://www.comingsoon.it/).
 
 ## Requirements
 
