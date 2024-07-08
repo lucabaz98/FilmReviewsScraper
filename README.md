@@ -17,6 +17,7 @@ The project is organized into several Python scripts, each responsible for a spe
 - **Analysis** folder:
   - **completeness.ipynb**: Jupyter notebook to analyze the completeness of the scraped data.
   - **query.ipynb**: Jupyter notebook to query the MongoDB database and analyze the collected data.
+  - - **report.pdf**: A report detailing the analysis of the collected data.
 
 ## Requirements
 
