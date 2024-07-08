@@ -14,6 +14,9 @@ The project is organized into several Python scripts, each responsible for a spe
 - **my_movies.py**: Contains functions to scrape data from [MyMovies](https://www.mymovies.it/).
 - **coming_soon.py**: Contains functions to scrape data from [ComingSoon](https://www.comingsoon.it/).
 - **utils.py**: Contains utility functions used across the project.
+- **Analysis** folder:
+  - **completeness.ipynb**: Jupyter notebook to analyze the completeness of the scraped data.
+  - **query.ipynb**: Jupyter notebook to query the MongoDB database and analyze the collected data.
 
 ## Requirements
 
