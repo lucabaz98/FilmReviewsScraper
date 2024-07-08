@@ -80,6 +80,6 @@ We are planning several future improvements to enhance the functionality and cov
 1. **Updating Film Ratings**: Implementing a feature to update existing film ratings with new ratings if they have changed.
 2. **Italy Box Office Rankings**: Adding Italy as a source for box office data in addition to the USA.
 3. **Optimized Data Storage**: Refactoring the database schema to better handle multiple data sources and improve data retrieval efficiency.
-4. **Enhanced Error Handling**: Implementing more robust error handling and logging mechanisms to ensure the scraper can recover from common issues without manual intervention.
+4. **Enhanced Error Handling**: Implementing more robust error handling mechanisms to ensure the scraper can recover from common issues without manual intervention.
 5. **Automated Schedules**: Setting up automated schedules for scraping tasks to ensure data is regularly updated without manual execution.
 6. **Data Visualization**: Integrating data visualization tools to provide graphical insights into the collected data directly from the database.
